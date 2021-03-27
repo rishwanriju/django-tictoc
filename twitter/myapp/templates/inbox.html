@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% include 'nav.html' %}
+
+<div class="container-fluid">
+    <h3 class="text-center">Inbox</h3>
+    <div class="col-10 px-3">
+    <table class="table table-md">
+        <tbody>
+        
+            {% for i in msgs %}
+            <tr>
+           
+                <td>
+                    <a href="/msg/{{i.id}}/">
+                        {% if i.user1 == request.user %}
+                            {{i.user2}}
+                        {% else %}
+                            {{i.user1}}
+                        {% endif %}
+                    </a>
+                </td>
+               
+            </tr>
+            {% endfor %}
+        </tbody>
+</div>
+</div>
+{% endblock content %}

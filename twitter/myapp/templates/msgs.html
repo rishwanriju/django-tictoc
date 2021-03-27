@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'nav.html' %}
+
+<div class="container-fluid">
+    <h3 class="text-center">Messages</h3>
+    <div class="col-10 mx-auto mb-5" id="chat" >
+            {% for i in msgs %}
+                <div class="row mb-2" >
+                    {% if i.sender == request.user %}
+                        <div class="col-12 text-right">
+                            {{i.msg}} <i class="fa fa-arrow-left ml-2" aria-hidden="true"></i>
+                        </div>
+                        <hr>
+                        {% else %}
+                        <div class="col-12 text-left">
+                            <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>{{i.msg}}
+                        </div>
+                        <hr>
+                    {% endif %}
+                    
+                </div>
+            {% endfor %}
+    </div>
+    <div class="fixed-bottom mt-1 mb-2">
+        <form action="" method="POST">
+         {% csrf_token %}
+            <input class="form-control" id="chatInput" placeholder="Enter message..." autofocus type="text" name="txt">
+        </form>
+    </div> 
+</div>
+<script src=" {% static 'bt\js\jquery-3.2.1.slim.min.js' %} "></script>
+<script>
+$("html").scrollTop($('#chat').innerHeight());
+setTimeout(function(){ location.assign(location.href)}, 10000);
+$("#chatInput").keypress(function(event) {
+    if (event.which == 13) {
+        event.preventDefault();
+        if($('#chatInput').val()!=""){
+            $("form").submit();
+        }
+        
+    }
+});
+</script>
+{% endblock content %}

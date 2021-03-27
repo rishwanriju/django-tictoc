@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %}
+<title>Login</title>
+{% endblock title %}
+
+{% block content %}
+<style>
+.errorlist{
+      list-style: none;
+      color:red;
+}
+.helptext{
+  color:yellow;
+}
+</style>
+
+<div class="col-12 ">
+  <div class="card mb-4">
+    <div class="card-body mx-auto d-block">
+      <h2>Sign In</h2>
+      <form method="post">
+        {% csrf_token %}
+          <table>
+            {{ form  }}
+          </table>
+        <input type="submit" class="btn btn-primary "  value="Submit">
+
+      </form>
+
+    </div>
+    <div class="row">
+        <div class="col-6 text-right">
+            <a class="small" href="{% url 'password_reset' %}">Forgot password?</a>
+        </div>
+        <div class="col-5 text-left">
+          <a class="small" href="{% url 'register' %}">Create an account?</a>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+{% endblock content %}

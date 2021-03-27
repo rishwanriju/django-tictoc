@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<br><br>
+<p class="text-center">you <strong>{{username}}</strong> deleted your account</p>
+<br>
+<p class="text-center">You will redirected login page in 5 seconds</p>
+<h6 class="text-center" id="count">5</h6>
+<script> 
+    time=5;
+    var x = setInterval(function() {
+        time-=1;
+        $('#count').text(time);
+        if (time  <1) {
+            clearInterval(x);
+            alert("bye");
+            window.location.replace({% url 'login' %})
+        }
+    }, 1000);
+</script> 
+{% endblock content %}

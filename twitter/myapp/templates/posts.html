@@ -1,0 +1,35 @@
+y{% extends 'base.html' %}
+{% block content %}
+{% include 'nav.html' %}
+<br><br><br>
+<span class="pl-5">
+<strong>{{username}}</strong>'s posts
+</span>
+<br><br>
+<div class="container mt-4 pb-5">
+  <div class="row justify-content-between">
+    {% for post in posts %}
+      <div class="col-12 col-md-4 col-lg-3 mx-3 mt-4  ">
+        <div class="card" style="">
+          <div class="card-body">
+              <a href="/post/{{post.id}}/" data-toggle="tooltip" title="view Post!"  class="card-text post text-dark" >
+                    <p class="card-text posts">{{post}}</p>
+              </a>
+          </div>
+          <div class="card-footer">
+            <a href="/like/{{post.id}}/" data-toggle="tooltip"  title="Show love" class="card-link " style="min-height: max-content;"> <i class="far fa-thumbs-up"></i> {{post.likes}}</i></a>
+            <a href="#" class="card-link " style="min-height: max-content;float: right;"> <i class="far fa-comment-alt"></i> {{post.comments}}</i></a>
+          </div>
+          <div class="card-date">
+            <small>{{post.created_date}}</small>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<hr>
+{% include 'pagination.html' %}
+
+{% endblock content %}

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'nav.html' %}
+<br><br><br>
+
+<div class="container">
+    
+{% if persons %}
+
+
+<table class="table table-hover table-striped table px-4 ">
+    <tbody >
+        {% for person in persons %}
+            <tr >
+                <td scope="row">{{person.username}}</td>
+                <td>{{person.first_name}}</td>
+                <td>{{person.last_name}}</td>
+                <td>
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                        {% if person.id in friends %}
+                        <input class="form-check-input" type="checkbox" checked onchange="follow({{person.id}},{{request.user.id}});" > <p class="Frnd{{person.id}}" style="display: inline;">Unfollow</p>
+                        {% else %}
+                        <input class="form-check-input" type="checkbox" onchange="follow({{person.id}},{{request.user.id}})" > <p class="Frnd{{person.id}}" style="display: inline;">Follow</p>
+                        {% endif %}
+        
+                    </label>
+                </div>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+{% else %}
+<h4> Nobody found </h4>
+{% endif %}
+</div>
+
+<p id="ak">sss</p>
+
+<script>
+function follow(id, userid,k){
+    var url= "/search/"+id+"/"+userid+"/"
+    frndid=".Frnd"+id
+    console.log(frndid);
+    
+    $.get(url,function(data,code) {
+    if (data=="true") {
+        $(frndid).text("Unfollow");
+        console.log("followed");            
+    }
+    else if (data=="null") {
+        $(frndid).text("Cant follow yourself");
+        console.log("null");
+    }
+    else{
+        $(frndid).text("Follow");
+        console.log("unfollowed");
+    }
+
+    });
+}
+</script>
+{% endblock %}

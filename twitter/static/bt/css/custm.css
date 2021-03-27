@@ -1,0 +1,31 @@
+.post{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 130%;
+    min-height: 200px;
+    max-height: 400px;
+    display: inline-block;
+}
+
+imsg {
+    display: block;
+    max-width:230px;
+    max-height:95px;
+    width: auto;
+    height: auto;
+  }
+.postimg{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 200px;
+    max-height: 400px;
+    display: inline-block;
+}
+
+table.settings tr td{
+    width: 290px;
+}
+
+
+.postimg{
+width: auto;
+max-block-size: inherit;
+}
